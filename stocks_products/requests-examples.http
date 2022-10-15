@@ -1,0 +1,90 @@
+# примеры API-запросов
+
+# ALLOWED_HOSTS = ['*'] в настройках, 127.0.0.1 - для тестирования
+@baseUrl = http://127.0.0.1:8000/api/v1
+
+# создание продукта
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Помидоры",
+  "description": "Лучшие помидоры на рынке"
+}
+
+###
+
+# получение продуктов
+GET {{baseUrl}}/products/
+Content-Type: application/json
+
+###
+
+# обновление продукта
+PATCH {{baseUrl}}/products/2/
+Content-Type: application/json
+
+{
+  "description": "Самые ништечковые огурчики в округе"
+}
+
+###
+
+# удаление продукта
+DELETE {{baseUrl}}/products/5/
+Content-Type: application/json
+
+###
+
+# поиск продуктов по названию и описанию
+GET {{baseUrl}}/products/?s=чес
+Content-Type: application/json
+
+###
+
+# создание склада
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "Москва, Южнопортовая, д.18 корп.2",
+  "positions": [
+    {
+      "product": 1,
+      "quantity": 100,
+      "price": 90.00
+    },
+    {
+      "product": 4,
+      "quantity": 350,
+      "price": 52.60
+    }
+  ]
+}
+
+###
+
+# обновляем записи на складе
+PATCH {{baseUrl}}/stocks/1/
+Content-Type: application/json
+
+{
+  "positions": [
+    {
+      "product": 1,
+      "quantity": 80,
+      "price": 95.50
+    },
+    {
+      "product": 4,
+      "quantity": 320,
+      "price": 56.40
+    }
+  ]
+}
+
+###
+
+# поиск складов, где есть определенный продукт, по ID
+GET {{baseUrl}}/stocks/?products=1
+Content-Type: application/json
