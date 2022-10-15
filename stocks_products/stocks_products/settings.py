@@ -27,7 +27,8 @@ SECRET_KEY = environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = environ.get('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS').split(' ')
 
 
 # Application definition
@@ -80,9 +81,13 @@ WSGI_APPLICATION = 'stocks_products.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": environ.get("SQL_ENGINE"),
+        "NAME": environ.get("SQL_DATABASE"),
+        "USER": environ.get("SQL_USER"),
+        "PASSWORD": environ.get("SQL_PASSWORD"),
+        "HOST": environ.get("SQL_HOST"),
+        "PORT": environ.get("SQL_PORT"),
     }
 }
 
