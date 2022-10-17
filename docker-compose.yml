@@ -2,9 +2,9 @@ version: "3.9"
 services:
   web:
     build: ./stocks_products
-    command: gunicorn stocks_products.wsgi:application -b 0.0.0.0:8000
+    command: gunicorn stocks_products.wsgi:application -b 0.0.0.0:9000
     ports:
-      - '8000:8000'
+      - '9000:9000'
     env_file:
       - ./.env.dev
     depends_on:
@@ -19,7 +19,7 @@ services:
   nginx:
     build: nginx
     ports:
-      - '5432:80'
+      - '1337:80'
     depends_on:
       - web
 volumes:
