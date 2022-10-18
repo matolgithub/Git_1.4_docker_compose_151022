@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from os import environ
+from os import path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,12 +83,12 @@ WSGI_APPLICATION = 'stocks_products.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": environ.get("SQL_ENGINE"),
-        "NAME": environ.get("SQL_DATABASE"),
-        "USER": environ.get("SQL_USER"),
-        "PASSWORD": environ.get("SQL_PASSWORD"),
-        "HOST": environ.get("SQL_HOST"),
-        "PORT": environ.get("SQL_PORT"),
+        "ENGINE": environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": environ.get("SQL_DATABASE", path.join(BASE_DIR, "db.sqlite3")),
+        "USER": environ.get("SQL_USER", "user"),
+        "PASSWORD": environ.get("SQL_PASSWORD", "password"),
+        "HOST": environ.get("SQL_HOST", "localhost"),
+        "PORT": environ.get("SQL_PORT", "5432"),
     }
 }
 
