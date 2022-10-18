@@ -1,7 +1,7 @@
 # примеры API-запросов
 
 # ALLOWED_HOSTS = ['*'] в настройках, 127.0.0.1 - для тестирования
-@baseUrl = http://127.0.0.1:8000/api/v1
+@baseUrl = http://127.0.0.1:9000/api/v1
 
 # создание продукта
 POST {{baseUrl}}/products/
